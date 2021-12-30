@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="DESKTOP-AEHQRTQ_DATAOM PriorityERP_CDC"
+  DTS:DTSID="{B6FB67F1-F584-4634-9FEB-D01FDAB7C905}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=DESKTOP-AEHQRTQ\DATAOM;Initial Catalog=PriorityERP;Integrated Security=True;Application Name=SSIS-FinalProject-{B6FB67F1-F584-4634-9FEB-D01FDAB7C905}DESKTOP-AEHQRTQ\DATAOM.PriorityERP1;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

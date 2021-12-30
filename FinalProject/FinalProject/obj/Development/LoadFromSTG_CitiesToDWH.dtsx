@@ -1,0 +1,1572 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/24/2021 7:41:39 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-AEHQRTQ"
+  DTS:CreatorName="DESKTOP-AEHQRTQ\USER"
+  DTS:DTSID="{D6F0028E-10E8-478F-9739-F29AD8D17424}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1037"
+  DTS:ObjectName="LoadFromSTG_CitiesToDWH"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{7355B91D-4C4F-43FA-B02F-1C8A9A9A12BD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DELETE"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D93B5B08-A523-4908-B0F5-5909DEFE5977}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DELETE"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DELETE\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DWH].[DimBooks]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1255</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DELETE\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{296BAD97-67F2-43DC-812A-EAF0CC70147C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-AEHQRTQ_DATAOM.FinalProject]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BookName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="BookName"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BookName]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[BookName]" />
+                    <inputColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BookID]"
+                      cachedDataType="i8"
+                      cachedName="BookID"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BookID]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[BookID]" />
+                    <inputColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UNIT]"
+                      cachedDataType="i8"
+                      cachedName="UNIT"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UNIT]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[UNIT]" />
+                    <inputColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FullPrice]"
+                      cachedDataType="r8"
+                      cachedName="FullPrice"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FullPrice]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[FullPrice]" />
+                    <inputColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Cost]"
+                      cachedDataType="r8"
+                      cachedName="Cost"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cost]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cost]" />
+                    <inputColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CategoryID]"
+                      cachedDataType="i8"
+                      cachedName="CategoryID"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[CategoryID]" />
+                    <inputColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AutherID]"
+                      cachedDataType="i8"
+                      cachedName="AutherID"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AutherID]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[AutherID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BookName]"
+                      dataType="wstr"
+                      length="100"
+                      name="BookName" />
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BookID]"
+                      dataType="i8"
+                      name="BookID" />
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UNIT]"
+                      dataType="i8"
+                      name="UNIT" />
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FullPrice]"
+                      dataType="r8"
+                      name="FullPrice" />
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cost]"
+                      dataType="r8"
+                      name="Cost" />
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CategoryID]"
+                      dataType="i8"
+                      name="CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AutherID]"
+                      dataType="i8"
+                      name="AutherID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DELETE\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DELETE\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DELETE\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DELETE\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[STG].[STG_DimBooks]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1255</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DELETE\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{296BAD97-67F2-43DC-812A-EAF0CC70147C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-AEHQRTQ_DATAOM.FinalProject]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[BookName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BookName]"
+                      length="100"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[BookName]"
+                      name="BookName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[BookID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BookID]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[BookID]"
+                      name="BookID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[UNIT]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UNIT]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[UNIT]"
+                      name="UNIT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[FullPrice]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FullPrice]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[FullPrice]"
+                      name="FullPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cost]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cost]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cost]"
+                      name="Cost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                      name="CategoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[AutherID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AutherID]"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].Columns[AutherID]"
+                      name="AutherID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BookName]"
+                      dataType="wstr"
+                      length="100"
+                      name="BookName" />
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BookID]"
+                      dataType="i8"
+                      name="BookID" />
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UNIT]"
+                      dataType="i8"
+                      name="UNIT" />
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FullPrice]"
+                      dataType="r8"
+                      name="FullPrice" />
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cost]"
+                      dataType="r8"
+                      name="Cost" />
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                      dataType="i8"
+                      name="CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AutherID]"
+                      dataType="i8"
+                      name="AutherID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BookName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BookName]"
+                      name="BookName" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BookID]"
+                      dataType="i8"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BookID]"
+                      name="BookID" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UNIT]"
+                      dataType="i8"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UNIT]"
+                      name="UNIT" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FullPrice]"
+                      dataType="r8"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FullPrice]"
+                      name="FullPrice" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Cost]"
+                      dataType="r8"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Cost]"
+                      name="Cost" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                      dataType="i8"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                      name="CategoryID" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AutherID]"
+                      dataType="i8"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AutherID]"
+                      name="AutherID" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DELETE.Paths[OLE DB Source Output]"
+              endId="Package\DELETE\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DELETE\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\FROM STG TO DWH"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{056A4F44-EE64-461D-90B3-9BF0A5A94702}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FROM STG TO DWH"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\FROM STG TO DWH\Delete Record"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Delete Record"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">DELETE FROM [DWH].[DimCity]
+WHERE [CityID]=?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1255</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FROM STG TO DWH\Delete Record.Connections[OleDbConnection]"
+                  connectionManagerID="{296BAD97-67F2-43DC-812A-EAF0CC70147C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-AEHQRTQ_DATAOM.FinalProject]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FROM STG TO DWH\Delete Record.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\Delete Record.Inputs[OLE DB Command Input].Columns[CityID]"
+                      cachedDataType="i8"
+                      cachedName="CityID"
+                      externalMetadataColumnId="Package\FROM STG TO DWH\Delete Record.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[CityID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FROM STG TO DWH\Delete Record.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i8"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM STG TO DWH\Delete Record.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\FROM STG TO DWH\Delete Record.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM STG TO DWH\Delete Record.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\FROM STG TO DWH\Delete Record.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\Delete Record.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM STG TO DWH\Delete Record.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\Delete Record.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM STG TO DWH\Delete Record.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM STG TO DWH\DWH_DimCity"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DWH_DimCity"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DWH].[DimCity]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1255</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FROM STG TO DWH\DWH_DimCity.Connections[OleDbConnection]"
+                  connectionManagerID="{296BAD97-67F2-43DC-812A-EAF0CC70147C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-AEHQRTQ_DATAOM.FinalProject]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FROM STG TO DWH\DWH_DimCity.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\DWH_DimCity.Inputs[OLE DB Destination Input].Columns[CityID]"
+                      cachedDataType="i8"
+                      cachedName="CityID"
+                      externalMetadataColumnId="Package\FROM STG TO DWH\DWH_DimCity.Inputs[OLE DB Destination Input].ExternalColumns[CityID]"
+                      lineageId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[CityID]" />
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\DWH_DimCity.Inputs[OLE DB Destination Input].Columns[CityName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CityName"
+                      externalMetadataColumnId="Package\FROM STG TO DWH\DWH_DimCity.Inputs[OLE DB Destination Input].ExternalColumns[CityName]"
+                      lineageId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[CityName]" />
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\DWH_DimCity.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedDataType="i8"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\FROM STG TO DWH\DWH_DimCity.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[Country]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FROM STG TO DWH\DWH_DimCity.Inputs[OLE DB Destination Input].ExternalColumns[CityID]"
+                      dataType="i8"
+                      name="CityID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM STG TO DWH\DWH_DimCity.Inputs[OLE DB Destination Input].ExternalColumns[CityName]"
+                      dataType="wstr"
+                      length="100"
+                      name="CityName" />
+                    <externalMetadataColumn
+                      refId="Package\FROM STG TO DWH\DWH_DimCity.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      dataType="i8"
+                      name="Country" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM STG TO DWH\DWH_DimCity.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\FROM STG TO DWH\DWH_DimCity.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\DWH_DimCity.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM STG TO DWH\DWH_DimCity.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\DWH_DimCity.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM STG TO DWH\DWH_DimCity.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM STG TO DWH\FROM STG CITIES"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="FROM STG CITIES"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[STG].[STG_DimCity]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1255</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FROM STG TO DWH\FROM STG CITIES.Connections[OleDbConnection]"
+                  connectionManagerID="{296BAD97-67F2-43DC-812A-EAF0CC70147C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-AEHQRTQ_DATAOM.FinalProject]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[CityID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].ExternalColumns[CityID]"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[CityID]"
+                      name="CityID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[CityName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].ExternalColumns[CityName]"
+                      length="100"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[CityName]"
+                      name="CityName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[Country]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[opertion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].ExternalColumns[opertion]"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[opertion]"
+                      name="opertion"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].ExternalColumns[CityID]"
+                      dataType="i8"
+                      name="CityID" />
+                    <externalMetadataColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].ExternalColumns[CityName]"
+                      dataType="wstr"
+                      length="100"
+                      name="CityName" />
+                    <externalMetadataColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      dataType="i8"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].ExternalColumns[opertion]"
+                      dataType="i4"
+                      name="opertion" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output].Columns[CityID]"
+                      dataType="i8"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output].Columns[CityID]"
+                      name="CityID" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output].Columns[CityName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output].Columns[CityName]"
+                      name="CityName" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      dataType="i8"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output].Columns[opertion]"
+                      dataType="i4"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output].Columns[opertion]"
+                      name="opertion" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM STG TO DWH\IS INSERTED"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="IS INSERTED"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FROM STG TO DWH\IS INSERTED.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\IS INSERTED.Inputs[Conditional Split Input].Columns[opertion]"
+                      cachedDataType="i4"
+                      cachedName="opertion"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[opertion]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM STG TO DWH\IS INSERTED.Outputs[Insert]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Insert"
+                  synchronousInputId="Package\FROM STG TO DWH\IS INSERTED.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[opertion]} == 1</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">opertion == 1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM STG TO DWH\IS INSERTED.Outputs[need to delete record]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="need to delete record"
+                  synchronousInputId="Package\FROM STG TO DWH\IS INSERTED.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM STG TO DWH\IS INSERTED.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\FROM STG TO DWH\IS INSERTED.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\IS INSERTED.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM STG TO DWH\IS INSERTED.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\IS INSERTED.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM STG TO DWH\IS INSERTED.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM STG TO DWH\IsUpdate?"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="IsUpdate?"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FROM STG TO DWH\IsUpdate?.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\IsUpdate?.Inputs[Conditional Split Input].Columns[opertion]"
+                      cachedDataType="i4"
+                      cachedName="opertion"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[opertion]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM STG TO DWH\IsUpdate?.Outputs[update]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="update"
+                  synchronousInputId="Package\FROM STG TO DWH\IsUpdate?.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[opertion]} == 2</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">opertion == 2</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM STG TO DWH\IsUpdate?.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\FROM STG TO DWH\IsUpdate?.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FROM STG TO DWH\IsUpdate?.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\FROM STG TO DWH\IsUpdate?.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\IsUpdate?.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FROM STG TO DWH\IsUpdate?.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\IsUpdate?.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FROM STG TO DWH\IsUpdate?.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FROM STG TO DWH\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 1].Columns[CityID]"
+                      cachedDataType="i8"
+                      cachedName="CityID"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[CityID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[CityID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 1].Columns[CityName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CityName"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[CityName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[CityName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 1].Columns[Country]"
+                      cachedDataType="i8"
+                      cachedName="Country"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[Country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[Country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 1].Columns[opertion]"
+                      cachedDataType="i4"
+                      cachedName="opertion"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[opertion]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[opertion]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 2].Columns[CityID]"
+                      cachedDataType="i8"
+                      cachedName="CityID"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[CityID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[CityID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 2].Columns[CityName]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CityName"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[CityName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[CityName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 2].Columns[Country]"
+                      cachedDataType="i8"
+                      cachedName="Country"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[Country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[Country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 2].Columns[opertion]"
+                      cachedDataType="i4"
+                      cachedName="opertion"
+                      lineageId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output].Columns[opertion]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[opertion]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[CityID]"
+                      dataType="i8"
+                      lineageId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[CityID]"
+                      name="CityID" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[CityName]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[CityName]"
+                      name="CityName" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[Country]"
+                      dataType="i8"
+                      lineageId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[opertion]"
+                      dataType="i4"
+                      lineageId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1].Columns[opertion]"
+                      name="opertion" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\FROM STG TO DWH.Paths[Insert]"
+              endId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 1]"
+              name="Insert"
+              startId="Package\FROM STG TO DWH\IS INSERTED.Outputs[Insert]" />
+            <path
+              refId="Package\FROM STG TO DWH.Paths[need to delete record]"
+              endId="Package\FROM STG TO DWH\Delete Record.Inputs[OLE DB Command Input]"
+              name="need to delete record"
+              startId="Package\FROM STG TO DWH\IS INSERTED.Outputs[need to delete record]" />
+            <path
+              refId="Package\FROM STG TO DWH.Paths[OLE DB Command Output]"
+              endId="Package\FROM STG TO DWH\IsUpdate?.Inputs[Conditional Split Input]"
+              name="OLE DB Command Output"
+              startId="Package\FROM STG TO DWH\Delete Record.Outputs[OLE DB Command Output]" />
+            <path
+              refId="Package\FROM STG TO DWH.Paths[OLE DB Source Output]"
+              endId="Package\FROM STG TO DWH\IS INSERTED.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\FROM STG TO DWH\FROM STG CITIES.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\FROM STG TO DWH.Paths[Union All Output 1]"
+              endId="Package\FROM STG TO DWH\DWH_DimCity.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\FROM STG TO DWH\Union All.Outputs[Union All Output 1]" />
+            <path
+              refId="Package\FROM STG TO DWH.Paths[update]"
+              endId="Package\FROM STG TO DWH\Union All.Inputs[Union All Input 2]"
+              name="update"
+              startId="Package\FROM STG TO DWH\IsUpdate?.Outputs[update]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\FROM STG TO DWH"
+          TopLeft="280,75" />
+        <NodeLayout
+          Size="116,42"
+          Id="Package\DELETE"
+          TopLeft="657,174" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\FROM STG TO DWH">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="145,42"
+          Id="Package\FROM STG TO DWH\DWH_DimCity"
+          TopLeft="299,402" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\FROM STG TO DWH\IS INSERTED"
+          TopLeft="412,149" />
+        <NodeLayout
+          Size="126,42"
+          Id="Package\FROM STG TO DWH\IsUpdate?"
+          TopLeft="674,351" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\FROM STG TO DWH\FROM STG CITIES"
+          TopLeft="393,75" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\FROM STG TO DWH\Delete Record"
+          TopLeft="669,264" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\FROM STG TO DWH\Union All"
+          TopLeft="319,310" />
+        <EdgeLayout
+          Id="Package\FROM STG TO DWH.Paths[Union All Output 1]"
+          TopLeft="379.5,352">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8,50"
+              Start="0,0"
+              End="-8,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="-4,25" />
+                  <mssgle:LineSegment
+                    End="-4,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4,25"
+                    Point2="-8,25"
+                    Point3="-8,29" />
+                  <mssgle:LineSegment
+                    End="-8,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FROM STG TO DWH.Paths[OLE DB Source Output]"
+          TopLeft="479,117">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32"
+              Start="0,0"
+              End="0,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FROM STG TO DWH.Paths[OLE DB Command Output]"
+          TopLeft="739.25,306">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FROM STG TO DWH.Paths[need to delete record]"
+          TopLeft="504.666666666667,191">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="236.833333333333,73"
+              Start="0,0"
+              End="236.833333333333,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.6914446002805" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.6914446002805"
+                    Point2="0,29.6914446002805"
+                    Point3="4,29.6914446002805" />
+                  <mssgle:LineSegment
+                    End="232.833333333333,29.6914446002805" />
+                  <mssgle:CubicBezierSegment
+                    Point1="232.833333333333,29.6914446002805"
+                    Point2="236.833333333333,29.6914446002805"
+                    Point3="236.833333333333,33.6914446002805" />
+                  <mssgle:LineSegment
+                    End="236.833333333333,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="70.7020572916667,34.6914446002805,95.42921875,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FROM STG TO DWH.Paths[Insert]"
+          TopLeft="460.333333333333,191">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-80.8333333333333,119"
+              Start="0,0"
+              End="-80.8333333333333,111.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.4011220196353" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44.4011220196353"
+                    Point2="0,48.4011220196353"
+                    Point3="-4,48.4011220196353" />
+                  <mssgle:LineSegment
+                    End="-76.8333333333333,48.4011220196353" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-76.8333333333333,48.4011220196353"
+                    Point2="-80.8333333333333,48.4011220196353"
+                    Point3="-80.8333333333333,52.4011220196353" />
+                  <mssgle:LineSegment
+                    End="-80.8333333333333,111.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-54.1696549479167,53.4011220196353,27.5059765625,9.40234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FROM STG TO DWH.Paths[update]"
+          TopLeft="674,372">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-234,-41"
+              Start="0,0"
+              End="-226.5,-41">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-113,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-113,0"
+                    Point2="-117,0"
+                    Point3="-117,-4" />
+                  <mssgle:LineSegment
+                    End="-117,-37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-117,-37"
+                    Point2="-117,-41"
+                    Point3="-121,-41" />
+                  <mssgle:LineSegment
+                    End="-226.5,-41" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-132.8025,1,31.605,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FROM STG TO DWH\DWH_DimCity">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FROM STG TO DWH\FROM STG CITIES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DELETE">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\DELETE\OLE DB Source"
+          TopLeft="351,117" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\DELETE\OLE DB Destination"
+          TopLeft="349,210" />
+        <EdgeLayout
+          Id="Package\DELETE.Paths[OLE DB Source Output]"
+          TopLeft="426,159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.5,51"
+              Start="0,0"
+              End="8.5,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5"
+                    Point2="0,25.5"
+                    Point3="4,25.5" />
+                  <mssgle:LineSegment
+                    End="4.5,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.5,25.5"
+                    Point2="8.5,25.5"
+                    Point3="8.5,29.5" />
+                  <mssgle:LineSegment
+                    End="8.5,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DELETE\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DELETE\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

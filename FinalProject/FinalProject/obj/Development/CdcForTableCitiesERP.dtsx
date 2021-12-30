@@ -1,0 +1,2003 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/24/2021 11:48:45 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-AEHQRTQ"
+  DTS:CreatorName="DESKTOP-AEHQRTQ\USER"
+  DTS:DTSID="{D59C6B0D-F601-4420-AADC-E2CF8E75801D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1037"
+  DTS:ObjectName="CdcForTableCitiesERP"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{C07DB6C6-9274-4556-BD66-BD3C83F09B30}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E8528A4C-C7A5-4148-A19A-1AE638E0247B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CDC_State1">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CDC Control mark range"
+      DTS:CreationName="Attunity.CdcControlTask"
+      DTS:Description="CDC Control Task"
+      DTS:DTSID="{7ACE723E-480D-45DB-BE43-D0F6663D584C}"
+      DTS:ExecutableType="Attunity.CdcControlTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CDC Control mark range"
+      DTS:TaskContact="Attunity Ltd.; All Rights Reserved; http://www.attunity.com;"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <CDCControlTask
+          Connection="DESKTOP-AEHQRTQ_DATAOM PriorityERP_CDC"
+          TaskOperation="MarkProcessedRange"
+          OperationParameter=""
+          StateConnection="DESKTOP-AEHQRTQ_DATAOM PriorityERP_CDC"
+          StateVariable="User::CDC_State1"
+          AutomaticStatePersistence="True"
+          StateName="CDC_State1"
+          StateTable="[dbo].[cdc_states]"
+          CommandTimeout="30"
+          ChangeDetectionRetryInterval="10"
+          ChangeDetectionTimeout="60" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\CDC Control Task for state one time only"
+      DTS:CreationName="Attunity.CdcControlTask"
+      DTS:Description="CDC Control Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{B177D76D-47E3-45CD-ACFC-0F5FE5B0BE15}"
+      DTS:ExecutableType="Attunity.CdcControlTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CDC Control Task for state one time only"
+      DTS:TaskContact="Attunity Ltd.; All Rights Reserved; http://www.attunity.com;"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <CDCControlTask
+          Connection="DESKTOP-AEHQRTQ_DATAOM PriorityERP_CDC"
+          TaskOperation="MarkCdcStart"
+          OperationParameter=""
+          StateConnection="DESKTOP-AEHQRTQ_DATAOM PriorityERP_CDC"
+          StateVariable="User::CDC_State1"
+          AutomaticStatePersistence="True"
+          StateName="CDC_State1"
+          StateTable="[dbo].[cdc_states]"
+          CommandTimeout="30"
+          ChangeDetectionRetryInterval="10"
+          ChangeDetectionTimeout="60" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\CDC get range"
+      DTS:CreationName="Attunity.CdcControlTask"
+      DTS:Description="CDC Control Task"
+      DTS:DTSID="{B0D55378-5F0A-45DA-B536-EDDAE124BB5D}"
+      DTS:ExecutableType="Attunity.CdcControlTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CDC get range"
+      DTS:TaskContact="Attunity Ltd.; All Rights Reserved; http://www.attunity.com;"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <CDCControlTask
+          Connection="DESKTOP-AEHQRTQ_DATAOM PriorityERP_CDC"
+          TaskOperation="GetProcessingRange"
+          OperationParameter=""
+          StateConnection="DESKTOP-AEHQRTQ_DATAOM PriorityERP_CDC"
+          StateVariable="User::CDC_State1"
+          AutomaticStatePersistence="True"
+          StateName="CDC_State1"
+          StateTable="[dbo].[cdc_states]"
+          CommandTimeout="30"
+          ChangeDetectionRetryInterval="10"
+          ChangeDetectionTimeout="60" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Extract Cities"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{591f2865-38a0-419c-b620-242cb8bb6a53}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract Cities"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract Cities\CDC Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Attunity Ltd.; All Rights Reserved; http://www.attunity.com;"
+              description="Reads change data from a SQL Server change table making it available for processing by downstream data-flow components. Only changes within the current processing range determined by the CDC Control task are read"
+              name="CDC Source"
+              usesDispositions="true"
+              version="8">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="An SSIS string package variable to store the CDC state of the current CDC state."
+                  expressionType="Notify"
+                  name="StateVariable"
+                  typeConverter="Attunity.SqlServer.CDCSrc.PackageVariablesTypeConverter">User::CDC_State1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the content of the metadata columns and the rows returned. Modes starting with ‘All’ return all changes and modes starting with ‘Net’ return net changes."
+                  expressionType="Notify"
+                  name="CDCProcessingMode"
+                  typeConverter="Attunity.SqlServer.CDCSrc.CdcProcessingMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The name of the CDC capture instance. By default the capture instance name is in the form of &quot;&lt;owner&gt;_&lt;table&gt;&quot;. The actual table that stores the changes is the CDC table named &quot;cdc&quot;.&quot;&lt;capture-instance&gt;_CT&quot;"
+                  expressionType="Notify"
+                  name="CaptureInstance">dbo_CITIES</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time out."
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="If true, a special output column called ‘__$reprocessing ’ is added. This output column is true for each data row during the initial processing range, or when the previous CDC run&#xA;was stopped without finishing. The default value is false (the __$reprocessing output column is not generated). This special output column allows the SSIS developer to handle consistency errors differently when working on the Initial Processing Range or the previous CDC run was stopped."
+                  expressionType="Notify"
+                  name="ReprocessingIndication">false</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Attunity.CdcSourceComponent</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Cities\CDC Source.Connections[Connection]"
+                  connectionManagerID="{B6FB67F1-F584-4634-9FEB-D01FDAB7C905}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-AEHQRTQ_DATAOM PriorityERP_CDC]"
+                  name="Connection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract Cities\CDC Source.Outputs[Output]"
+                  name="Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$start_lsn]"
+                      dataType="bytes"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[__$start_lsn]"
+                      length="10"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$start_lsn]"
+                      name="__$start_lsn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$operation]"
+                      dataType="i4"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[__$operation]"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$operation]"
+                      name="__$operation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$update_mask]"
+                      dataType="bytes"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[__$update_mask]"
+                      length="128"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$update_mask]"
+                      name="__$update_mask"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYID]"
+                      dataType="i8"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[CITYID]"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYID]"
+                      name="CITYID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYNAME]"
+                      dataType="wstr"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[CITYNAME]"
+                      length="100"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYNAME]"
+                      name="CITYNAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[STATEID]"
+                      dataType="i8"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[STATEID]"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[STATEID]"
+                      name="STATEID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[COUNTRY]"
+                      dataType="i8"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[COUNTRY]"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[COUNTRY]"
+                      name="COUNTRY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYCODE]"
+                      dataType="wstr"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[CITYCODE]"
+                      length="3"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYCODE]"
+                      name="CITYCODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[ECITYNAME]"
+                      dataType="wstr"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[ECITYNAME]"
+                      length="40"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[ECITYNAME]"
+                      name="ECITYNAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$command_id]"
+                      dataType="i4"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[__$command_id]"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$command_id]"
+                      name="__$command_id"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[__$start_lsn]"
+                      dataType="bytes"
+                      length="10"
+                      name="__$start_lsn" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[__$operation]"
+                      dataType="i4"
+                      name="__$operation" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[__$update_mask]"
+                      dataType="bytes"
+                      length="128"
+                      name="__$update_mask" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[CITYID]"
+                      dataType="i8"
+                      name="CITYID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[CITYNAME]"
+                      dataType="wstr"
+                      length="100"
+                      name="CITYNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[STATEID]"
+                      dataType="i8"
+                      name="STATEID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[COUNTRY]"
+                      dataType="i8"
+                      name="COUNTRY" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[CITYCODE]"
+                      dataType="wstr"
+                      length="3"
+                      name="CITYCODE" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[ECITYNAME]"
+                      dataType="wstr"
+                      length="40"
+                      name="ECITYNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[Output].ExternalColumns[__$command_id]"
+                      dataType="i4"
+                      name="__$command_id" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput]"
+                  isErrorOut="true"
+                  name="ErrorOutput">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[__$start_lsn]"
+                      dataType="bytes"
+                      length="10"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[__$start_lsn]"
+                      name="__$start_lsn" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[__$operation]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[__$operation]"
+                      name="__$operation" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[__$update_mask]"
+                      dataType="bytes"
+                      length="128"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[__$update_mask]"
+                      name="__$update_mask" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[CITYID]"
+                      dataType="i8"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[CITYID]"
+                      name="CITYID" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[CITYNAME]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[CITYNAME]"
+                      name="CITYNAME" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[STATEID]"
+                      dataType="i8"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[STATEID]"
+                      name="STATEID" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[COUNTRY]"
+                      dataType="i8"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[COUNTRY]"
+                      name="COUNTRY" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[CITYCODE]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[CITYCODE]"
+                      name="CITYCODE" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[ECITYNAME]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[ECITYNAME]"
+                      name="ECITYNAME" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[__$command_id]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[ErrorOutput].Columns[__$command_id]"
+                      name="__$command_id" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Cities\CDC Splitter"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Attunity Ltd.; All Rights Reserved; http://www.attunity.com;"
+              description="Directs a stream of net change records into different outputs based on the type of the change (Insert, Delete and Update). This allows specific handling for different types of change records."
+              name="CDC Splitter"
+              usesDispositions="true"
+              version="8">
+              <properties>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Attunity.CdcSplitterComponent</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Extract Cities\CDC Splitter.Inputs[Input]"
+                  errorOrTruncationOperation="Operation of the changed row is not a valid one"
+                  errorRowDisposition="FailComponent"
+                  name="Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Cities\CDC Splitter.Inputs[Input].Columns[__$start_lsn]"
+                      cachedDataType="bytes"
+                      cachedLength="10"
+                      cachedName="__$start_lsn"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$start_lsn]" />
+                    <inputColumn
+                      refId="Package\Extract Cities\CDC Splitter.Inputs[Input].Columns[__$operation]"
+                      cachedDataType="i4"
+                      cachedName="__$operation"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$operation]" />
+                    <inputColumn
+                      refId="Package\Extract Cities\CDC Splitter.Inputs[Input].Columns[__$update_mask]"
+                      cachedDataType="bytes"
+                      cachedLength="128"
+                      cachedName="__$update_mask"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$update_mask]" />
+                    <inputColumn
+                      refId="Package\Extract Cities\CDC Splitter.Inputs[Input].Columns[CITYID]"
+                      cachedDataType="i8"
+                      cachedName="CITYID"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYID]" />
+                    <inputColumn
+                      refId="Package\Extract Cities\CDC Splitter.Inputs[Input].Columns[CITYNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CITYNAME"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYNAME]" />
+                    <inputColumn
+                      refId="Package\Extract Cities\CDC Splitter.Inputs[Input].Columns[STATEID]"
+                      cachedDataType="i8"
+                      cachedName="STATEID"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[STATEID]" />
+                    <inputColumn
+                      refId="Package\Extract Cities\CDC Splitter.Inputs[Input].Columns[COUNTRY]"
+                      cachedDataType="i8"
+                      cachedName="COUNTRY"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[COUNTRY]" />
+                    <inputColumn
+                      refId="Package\Extract Cities\CDC Splitter.Inputs[Input].Columns[CITYCODE]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CITYCODE"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYCODE]" />
+                    <inputColumn
+                      refId="Package\Extract Cities\CDC Splitter.Inputs[Input].Columns[ECITYNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ECITYNAME"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[ECITYNAME]" />
+                    <inputColumn
+                      refId="Package\Extract Cities\CDC Splitter.Inputs[Input].Columns[__$command_id]"
+                      cachedDataType="i4"
+                      cachedName="__$command_id"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$command_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Cities\CDC Splitter.Outputs[InsertOutput]"
+                  exclusionGroup="1"
+                  name="InsertOutput"
+                  synchronousInputId="Package\Extract Cities\CDC Splitter.Inputs[Input]">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Output type - Insert."
+                      name="OutputType"
+                      typeConverter="Attunity.SqlServer.CDCSplit.OutputType">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Cities\CDC Splitter.Outputs[DeleteOutput]"
+                  exclusionGroup="1"
+                  name="DeleteOutput"
+                  synchronousInputId="Package\Extract Cities\CDC Splitter.Inputs[Input]">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Output type - Delete."
+                      name="OutputType"
+                      typeConverter="Attunity.SqlServer.CDCSplit.OutputType">2</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Cities\CDC Splitter.Outputs[UpdateOutput]"
+                  exclusionGroup="1"
+                  name="UpdateOutput"
+                  synchronousInputId="Package\Extract Cities\CDC Splitter.Inputs[Input]">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Output type - Update."
+                      name="OutputType"
+                      typeConverter="Attunity.SqlServer.CDCSplit.OutputType">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Cities\CDC Splitter.Outputs[ErrorOutput]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ErrorOutput"
+                  synchronousInputId="Package\Extract Cities\CDC Splitter.Inputs[Input]">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Output type - Error."
+                      name="OutputType"
+                      typeConverter="Attunity.SqlServer.CDCSplit.OutputType">3</property>
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Splitter.Outputs[ErrorOutput].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\CDC Splitter.Outputs[ErrorOutput].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Cities\CDC Splitter.Outputs[ErrorOutput].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\CDC Splitter.Outputs[ErrorOutput].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Cities\Delete"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Delete"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract Cities\Delete.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Cities\Delete.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Extract Cities\Delete.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Cities\Delete.Outputs[Derived Column Output].Columns[Opertion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Extract Cities\Delete.Outputs[Derived Column Output].Columns[Opertion]"
+                      name="Opertion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">3</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">3</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Cities\Delete.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Extract Cities\Delete.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Cities\Delete.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\Delete.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Cities\Delete.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\Delete.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Cities\insert"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="insert"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract Cities\insert.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Cities\insert.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Extract Cities\insert.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Cities\insert.Outputs[Derived Column Output].Columns[Opertion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Extract Cities\insert.Outputs[Derived Column Output].Columns[Opertion]"
+                      name="Opertion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Cities\insert.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Extract Cities\insert.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Cities\insert.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\insert.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Cities\insert.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\insert.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Cities\mrr_cities"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="mrr_cities"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[MRR].[Mrr_Cities]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1255</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Cities\mrr_cities.Connections[OleDbConnection]"
+                  connectionManagerID="{296BAD97-67F2-43DC-812A-EAF0CC70147C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DESKTOP-AEHQRTQ_DATAOM.FinalProject]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input].Columns[CITYID]"
+                      cachedDataType="i8"
+                      cachedName="CITYID"
+                      externalMetadataColumnId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input].ExternalColumns[CITYID]"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYID]" />
+                    <inputColumn
+                      refId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input].Columns[CITYNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CITYNAME"
+                      externalMetadataColumnId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input].ExternalColumns[CITYNAME]"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYNAME]" />
+                    <inputColumn
+                      refId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input].Columns[COUNTRY]"
+                      cachedDataType="i8"
+                      cachedName="COUNTRY"
+                      externalMetadataColumnId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY]"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[COUNTRY]" />
+                    <inputColumn
+                      refId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input].Columns[Opertion]"
+                      cachedDataType="i4"
+                      cachedName="Opertion"
+                      externalMetadataColumnId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input].ExternalColumns[opertion]"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[Opertion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input].ExternalColumns[CITYID]"
+                      dataType="i8"
+                      name="CITYID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input].ExternalColumns[CITYNAME]"
+                      dataType="wstr"
+                      length="100"
+                      name="CITYNAME" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input].ExternalColumns[COUNTRY]"
+                      dataType="i8"
+                      name="COUNTRY" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input].ExternalColumns[opertion]"
+                      dataType="i4"
+                      name="opertion" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Cities\mrr_cities.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Cities\mrr_cities.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\mrr_cities.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Cities\mrr_cities.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\mrr_cities.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Cities\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\Extract Cities\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 1].Columns[__$start_lsn]"
+                      cachedDataType="bytes"
+                      cachedLength="10"
+                      cachedName="__$start_lsn"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$start_lsn]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$start_lsn]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 1].Columns[__$operation]"
+                      cachedDataType="i4"
+                      cachedName="__$operation"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$operation]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$operation]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 1].Columns[__$update_mask]"
+                      cachedDataType="bytes"
+                      cachedLength="128"
+                      cachedName="__$update_mask"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$update_mask]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$update_mask]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 1].Columns[CITYID]"
+                      cachedDataType="i8"
+                      cachedName="CITYID"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 1].Columns[CITYNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CITYNAME"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYNAME]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYNAME]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 1].Columns[STATEID]"
+                      cachedDataType="i8"
+                      cachedName="STATEID"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[STATEID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[STATEID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 1].Columns[COUNTRY]"
+                      cachedDataType="i8"
+                      cachedName="COUNTRY"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[COUNTRY]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[COUNTRY]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 1].Columns[CITYCODE]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CITYCODE"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYCODE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYCODE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 1].Columns[ECITYNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ECITYNAME"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[ECITYNAME]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[ECITYNAME]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 1].Columns[__$command_id]"
+                      cachedDataType="i4"
+                      cachedName="__$command_id"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$command_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$command_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 1].Columns[Opertion]"
+                      cachedDataType="i4"
+                      cachedName="Opertion"
+                      lineageId="Package\Extract Cities\insert.Outputs[Derived Column Output].Columns[Opertion]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[Opertion]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Extract Cities\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 2].Columns[__$start_lsn]"
+                      cachedDataType="bytes"
+                      cachedLength="10"
+                      cachedName="__$start_lsn"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$start_lsn]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$start_lsn]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 2].Columns[__$operation]"
+                      cachedDataType="i4"
+                      cachedName="__$operation"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$operation]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$operation]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 2].Columns[__$update_mask]"
+                      cachedDataType="bytes"
+                      cachedLength="128"
+                      cachedName="__$update_mask"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$update_mask]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$update_mask]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 2].Columns[CITYID]"
+                      cachedDataType="i8"
+                      cachedName="CITYID"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 2].Columns[CITYNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CITYNAME"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYNAME]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYNAME]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 2].Columns[STATEID]"
+                      cachedDataType="i8"
+                      cachedName="STATEID"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[STATEID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[STATEID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 2].Columns[COUNTRY]"
+                      cachedDataType="i8"
+                      cachedName="COUNTRY"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[COUNTRY]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[COUNTRY]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 2].Columns[CITYCODE]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CITYCODE"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYCODE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYCODE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 2].Columns[ECITYNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ECITYNAME"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[ECITYNAME]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[ECITYNAME]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 2].Columns[__$command_id]"
+                      cachedDataType="i4"
+                      cachedName="__$command_id"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$command_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$command_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 2].Columns[Opertion]"
+                      cachedDataType="i4"
+                      cachedName="Opertion"
+                      lineageId="Package\Extract Cities\Update.Outputs[Derived Column Output].Columns[Opertion]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[Opertion]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Extract Cities\Union All.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 3].Columns[__$start_lsn]"
+                      cachedDataType="bytes"
+                      cachedLength="10"
+                      cachedName="__$start_lsn"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$start_lsn]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$start_lsn]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 3].Columns[__$operation]"
+                      cachedDataType="i4"
+                      cachedName="__$operation"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$operation]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$operation]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 3].Columns[__$update_mask]"
+                      cachedDataType="bytes"
+                      cachedLength="128"
+                      cachedName="__$update_mask"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$update_mask]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$update_mask]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 3].Columns[CITYID]"
+                      cachedDataType="i8"
+                      cachedName="CITYID"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 3].Columns[CITYNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="CITYNAME"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYNAME]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYNAME]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 3].Columns[STATEID]"
+                      cachedDataType="i8"
+                      cachedName="STATEID"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[STATEID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[STATEID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 3].Columns[COUNTRY]"
+                      cachedDataType="i8"
+                      cachedName="COUNTRY"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[COUNTRY]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[COUNTRY]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 3].Columns[CITYCODE]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CITYCODE"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[CITYCODE]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYCODE]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 3].Columns[ECITYNAME]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="ECITYNAME"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[ECITYNAME]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[ECITYNAME]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 3].Columns[__$command_id]"
+                      cachedDataType="i4"
+                      cachedName="__$command_id"
+                      lineageId="Package\Extract Cities\CDC Source.Outputs[Output].Columns[__$command_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$command_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Extract Cities\Union All.Inputs[Union All Input 3].Columns[Opertion]"
+                      cachedDataType="i4"
+                      cachedName="Opertion"
+                      lineageId="Package\Extract Cities\Delete.Outputs[Derived Column Output].Columns[Opertion]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[Opertion]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Extract Cities\Union All.Inputs[Union All Input 4]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 4">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Cities\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$start_lsn]"
+                      dataType="bytes"
+                      length="10"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$start_lsn]"
+                      name="__$start_lsn" />
+                    <outputColumn
+                      refId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$operation]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$operation]"
+                      name="__$operation" />
+                    <outputColumn
+                      refId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$update_mask]"
+                      dataType="bytes"
+                      length="128"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$update_mask]"
+                      name="__$update_mask" />
+                    <outputColumn
+                      refId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYID]"
+                      dataType="i8"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYID]"
+                      name="CITYID" />
+                    <outputColumn
+                      refId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYNAME]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYNAME]"
+                      name="CITYNAME" />
+                    <outputColumn
+                      refId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[STATEID]"
+                      dataType="i8"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[STATEID]"
+                      name="STATEID" />
+                    <outputColumn
+                      refId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[COUNTRY]"
+                      dataType="i8"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[COUNTRY]"
+                      name="COUNTRY" />
+                    <outputColumn
+                      refId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYCODE]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[CITYCODE]"
+                      name="CITYCODE" />
+                    <outputColumn
+                      refId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[ECITYNAME]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[ECITYNAME]"
+                      name="ECITYNAME" />
+                    <outputColumn
+                      refId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$command_id]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[__$command_id]"
+                      name="__$command_id" />
+                    <outputColumn
+                      refId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[Opertion]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\Union All.Outputs[Union All Output 1].Columns[Opertion]"
+                      name="Opertion" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Cities\Update"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Update"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract Cities\Update.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Cities\Update.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Extract Cities\Update.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Cities\Update.Outputs[Derived Column Output].Columns[Opertion]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Extract Cities\Update.Outputs[Derived Column Output].Columns[Opertion]"
+                      name="Opertion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">2</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">2</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Cities\Update.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Extract Cities\Update.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Cities\Update.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\Update.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Cities\Update.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Cities\Update.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract Cities.Paths[DeleteOutput]"
+              endId="Package\Extract Cities\Delete.Inputs[Derived Column Input]"
+              name="DeleteOutput"
+              startId="Package\Extract Cities\CDC Splitter.Outputs[DeleteOutput]" />
+            <path
+              refId="Package\Extract Cities.Paths[Derived Column Output]"
+              endId="Package\Extract Cities\Union All.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\Extract Cities\insert.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Extract Cities.Paths[Derived Column Output1]"
+              endId="Package\Extract Cities\Union All.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\Extract Cities\Update.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Extract Cities.Paths[Derived Column Output2]"
+              endId="Package\Extract Cities\Union All.Inputs[Union All Input 3]"
+              name="Derived Column Output"
+              startId="Package\Extract Cities\Delete.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Extract Cities.Paths[InsertOutput]"
+              endId="Package\Extract Cities\insert.Inputs[Derived Column Input]"
+              name="InsertOutput"
+              startId="Package\Extract Cities\CDC Splitter.Outputs[InsertOutput]" />
+            <path
+              refId="Package\Extract Cities.Paths[Output]"
+              endId="Package\Extract Cities\CDC Splitter.Inputs[Input]"
+              name="Output"
+              startId="Package\Extract Cities\CDC Source.Outputs[Output]" />
+            <path
+              refId="Package\Extract Cities.Paths[Union All Output 1]"
+              endId="Package\Extract Cities\mrr_cities.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\Extract Cities\Union All.Outputs[Union All Output 1]" />
+            <path
+              refId="Package\Extract Cities.Paths[UpdateOutput]"
+              endId="Package\Extract Cities\Update.Inputs[Derived Column Input]"
+              name="UpdateOutput"
+              startId="Package\Extract Cities\CDC Splitter.Outputs[UpdateOutput]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate mrr_cities"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f099ecec-9785-41b1-aaa2-837e2765bef3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate mrr_cities"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{296BAD97-67F2-43DC-812A-EAF0CC70147C}"
+          SQLTask:SqlStatementSource="Truncate Table [MRR].[Mrr_Cities]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F043B238-EB47-4518-98E2-3F018078419C}"
+      DTS:From="Package\Truncate mrr_cities"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\CDC get range" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A9A4FB47-F6B6-49C7-9AA7-79415583F19E}"
+      DTS:From="Package\CDC get range"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Extract Cities" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{D308381B-42D7-4A00-941C-E89FE555312E}"
+      DTS:From="Package\Extract Cities"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\CDC Control mark range" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{18B2A1EC-B933-4DA8-AC87-12EFF2BBB1F5}"
+      DTS:From="Package\CDC Control Task for state one time only"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Truncate mrr_cities" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\CDC Control mark range"
+          TopLeft="347,418" />
+        <NodeLayout
+          Size="272,42"
+          Id="Package\CDC Control Task for state one time only"
+          TopLeft="291,60" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\CDC get range"
+          TopLeft="356,231" />
+        <NodeLayout
+          Size="140,42"
+          Id="Package\Extract Cities"
+          TopLeft="365,311" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Truncate mrr_cities"
+          TopLeft="351,152" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="433,194">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37"
+              Start="0,0"
+              End="0,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="432.5,273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="435,353">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.5,65"
+              Start="0,0"
+              End="8.5,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.5"
+                    Point2="0,32.5"
+                    Point3="4,32.5" />
+                  <mssgle:LineSegment
+                    End="4.5,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.5,32.5"
+                    Point2="8.5,32.5"
+                    Point3="8.5,36.5" />
+                  <mssgle:LineSegment
+                    End="8.5,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="427,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9,50"
+              Start="0,0"
+              End="9,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="4,25" />
+                  <mssgle:LineSegment
+                    End="5,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5,25"
+                    Point2="9,25"
+                    Point3="9,29" />
+                  <mssgle:LineSegment
+                    End="9,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract Cities">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="109,42"
+          Id="Package\Extract Cities\Delete"
+          TopLeft="715,211" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Extract Cities\Union All"
+          TopLeft="399,360" />
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Extract Cities\CDC Splitter"
+          TopLeft="367,130" />
+        <NodeLayout
+          Size="105,42"
+          Id="Package\Extract Cities\insert"
+          TopLeft="106,200" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Extract Cities\Update"
+          TopLeft="371,225" />
+        <NodeLayout
+          Size="134,42"
+          Id="Package\Extract Cities\CDC Source"
+          TopLeft="364,36" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\Extract Cities\mrr_cities"
+          TopLeft="390,447" />
+        <EdgeLayout
+          Id="Package\Extract Cities.Paths[Derived Column Output]"
+          TopLeft="158.5,242">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="272.75,118"
+              Start="0,0"
+              End="272.75,110.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.9703504043127" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,72.9703504043127"
+                    Point2="0,76.9703504043127"
+                    Point3="4,76.9703504043127" />
+                  <mssgle:LineSegment
+                    End="268.75,76.9703504043127" />
+                  <mssgle:CubicBezierSegment
+                    Point1="268.75,76.9703504043127"
+                    Point2="272.75,76.9703504043127"
+                    Point3="272.75,80.9703504043127" />
+                  <mssgle:LineSegment
+                    End="272.75,110.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Cities.Paths[DeleteOutput]"
+          TopLeft="467,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="302.5,39"
+              Start="0,0"
+              End="302.5,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.5"
+                    Point2="0,13.5"
+                    Point3="4,13.5" />
+                  <mssgle:LineSegment
+                    End="298.5,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="298.5,13.5"
+                    Point2="302.5,13.5"
+                    Point3="302.5,17.5" />
+                  <mssgle:LineSegment
+                    End="302.5,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="121.30361328125,18.5,59.8927734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Cities.Paths[UpdateOutput]"
+          TopLeft="431.25,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-31.63033203125,16.9453125,63.2606640625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Cities.Paths[Union All Output 1]"
+          TopLeft="456,402">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Cities.Paths[Output]"
+          TopLeft="433,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Cities.Paths[InsertOutput]"
+          TopLeft="403,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-244.5,28"
+              Start="0,0"
+              End="-244.5,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,5.69230769230769" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,5.69230769230769"
+                    Point2="0,9.69230769230769"
+                    Point3="-4,9.69230769230769" />
+                  <mssgle:LineSegment
+                    End="-240.5,9.69230769230769" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-240.5,9.69230769230769"
+                    Point2="-244.5,9.69230769230769"
+                    Point3="-244.5,13.6923076923077" />
+                  <mssgle:LineSegment
+                    End="-244.5,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-151.22798828125,14.6923076923077,57.9559765625,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Cities.Paths[Derived Column Output2]"
+          TopLeft="769.5,253">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-281.75,107"
+              Start="0,0"
+              End="-281.75,99.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.7951482479784" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,65.7951482479784"
+                    Point2="0,69.7951482479784"
+                    Point3="-4,69.7951482479784" />
+                  <mssgle:LineSegment
+                    End="-277.75,69.7951482479784" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-277.75,69.7951482479784"
+                    Point2="-281.75,69.7951482479784"
+                    Point3="-281.75,73.7951482479784" />
+                  <mssgle:LineSegment
+                    End="-281.75,99.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Cities.Paths[Derived Column Output1]"
+          TopLeft="427.5,267">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="32,93"
+              Start="0,0"
+              End="32,85.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.5"
+                    Point2="0,46.5"
+                    Point3="4,46.5" />
+                  <mssgle:LineSegment
+                    End="28,46.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="28,46.5"
+                    Point2="32,46.5"
+                    Point3="32,50.5" />
+                  <mssgle:LineSegment
+                    End="32,85.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Cities\CDC Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Cities\mrr_cities">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
